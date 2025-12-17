@@ -103,6 +103,26 @@
       opacity: 1;
     }
 
+    /* 🔥 mini bloc “reste connecté” */
+    .hype-box{
+      margin: 16px 0 6px;
+      padding: 14px 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      text-align: left;
+    }
+    .hype-title{
+      font-size: 1.02rem;
+      margin-bottom: 6px;
+      color: #e6ddff;
+    }
+    .hype-text{
+      font-size: 0.86rem;
+      line-height: 1.5;
+      color: rgba(255,255,255,0.9);
+    }
+
     /* Bloc du règlement déroulant */
     .rules-box {
       margin-top: 22px;
@@ -167,12 +187,6 @@
       margin-bottom: 8px;
     }
 
-    .consent-text a {
-      color: #d0c4ff;
-      text-decoration: underline;
-      text-decoration-thickness: 1px;
-    }
-
     .consent-actions {
       display: flex;
       justify-content: flex-end;
@@ -208,13 +222,8 @@
         border-radius: 20px;
       }
 
-      h1 {
-        font-size: 1.4rem;
-      }
-
-      .subtitle {
-        font-size: 0.9rem;
-      }
+      h1 { font-size: 1.4rem; }
+      .subtitle { font-size: 0.9rem; }
     }
   </style>
 
@@ -230,18 +239,14 @@
     function acceptReglement() {
       const banner = document.getElementById("consent-banner");
       banner.style.display = "none";
-      try {
-        localStorage.setItem("hdm_rgcard_reglement_accepted", "1");
-      } catch (e) {}
+      try { localStorage.setItem("hdm_rgcard_reglement_accepted", "1"); } catch (e) {}
     }
 
     function refuseReglement() {
       const banner = document.getElementById("consent-banner");
       const card = document.querySelector(".card");
       banner.style.display = "none";
-      try {
-        localStorage.setItem("hdm_rgcard_reglement_refused", "1");
-      } catch (e) {}
+      try { localStorage.setItem("hdm_rgcard_reglement_refused", "1"); } catch (e) {}
 
       if (card) {
         card.innerHTML = `
@@ -264,13 +269,8 @@
     document.addEventListener("DOMContentLoaded", function () {
       const banner = document.getElementById("consent-banner");
       let accepted = false;
-      try {
-        accepted = localStorage.getItem("hdm_rgcard_reglement_accepted") === "1";
-      } catch (e) { accepted = false; }
-
-      if (!accepted) {
-        banner.style.display = "block";
-      }
+      try { accepted = localStorage.getItem("hdm_rgcard_reglement_accepted") === "1"; } catch (e) { accepted = false; }
+      if (!accepted) banner.style.display = "block";
     });
   </script>
 </head>
@@ -284,12 +284,20 @@
         <span>Résultat du jeu</span>
       </div>
 
-      <h1>Ce QR code n’est pas gagnant</h1>
+      <h1>Pas gagnant… cette fois 😉</h1>
 
       <p class="subtitle">
-        Merci pour ta participation au jeu <strong>Halles de Minuit x RG.card</strong>.<br>
+        Merci d’avoir participé à <strong>Halles de Minuit x RG.card</strong>.<br>
         Ce QR code ne correspond pas au <strong>code gagnant prédéterminé</strong>.
       </p>
+
+      <div class="hype-box">
+        <div class="hype-title">🚀 Reste connecté</div>
+        <div class="hype-text">
+          D’autres jeux arrivent bientôt.<br>
+          Suis-nous sur TikTok pour ne rien rater (annonces, dates, prochains lots).
+        </div>
+      </div>
 
       <p class="info">
         Les résultats sont définitifs une fois la totalité des QR codes distribués,
